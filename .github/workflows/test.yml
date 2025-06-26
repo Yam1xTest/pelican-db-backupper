@@ -17,7 +17,7 @@ jobs:
     secrets: inherit
   run-tests:
     runs-on: ubuntu-24.04
-
+    needs: push_to_registry
     steps:
       - name: Checkout local-env
         uses: actions/checkout@v4
