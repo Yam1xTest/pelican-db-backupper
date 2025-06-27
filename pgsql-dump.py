@@ -7,7 +7,7 @@ def main():
 
     backup_filename = os.getenv('DB_BACKUPS_FILENAME_PREFIX') + '-' + datetime.strftime(datetime.utcnow(), "%Y-%m-%dT%H-%M-%S") + '.backup'
 
-    os.system('pg_dump -h $DATABASE_HOST -U $DATABASE_USERNAME --encoding UTF8 --format plain $DATABASE_NAME > %s' %(backup_filename))
+    # os.system('pg_dump -h $DATABASE_HOST -U $DATABASE_USERNAME --encoding UTF8 --format plain $DATABASE_NAME > %s' %(backup_filename))
 
     if os.path.exists(backup_filename):
         upload_to_s3(backup_filename)
