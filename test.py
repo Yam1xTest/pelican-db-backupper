@@ -14,6 +14,7 @@ def main():
     print(len(contents))
 
     if(len(contents) > 0):
+        print(contents[0]['Size'])
         if(not contents[0]['Size'] > 0):
             raise Exception("File size is 0")
     else:
