@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Write minio subdomain into hosts
-        run: sudo echo "127.0.0.1 minio-s3.localhost" >> /etc/hosts
+        run: sudo echo "127.0.0.1 minio-s3.localhost" | sudo tee -a /etc/hosts
 
       - name: Write creds 
         run: cat >/root/.aws/credentials <<EOL
