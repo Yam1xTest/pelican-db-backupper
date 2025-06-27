@@ -58,7 +58,7 @@ jobs:
           echo "aws_secret_access_key = rootPassword" | tee -a ~/.aws/credentials             
 
       - name: sleep 90 seconds
-        run: sleep 60
+        run: sleep 90
 
       - name: run test
         run: python test.py
