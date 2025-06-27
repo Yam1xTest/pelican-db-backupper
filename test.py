@@ -1,4 +1,5 @@
 import boto3
+import os
 
 def main():
     s3 = boto3.client(
