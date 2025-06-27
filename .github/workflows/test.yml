@@ -45,20 +45,10 @@ jobs:
               PELICAN_DB_BACKUPPER_BRANCH=${{ github.head_ref || github.ref_name }}
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 
 
-      - name: Write minio subdomain into hosts
-        run: sudo echo "127.0.0.1 minio-s3.localhost" | sudo tee -a /etc/hosts
-
-      - name: Write creds 
-        run: |
-          mkdir ~/.aws
-          echo "[default]" | tee ~/.aws/credentials             
-          echo "aws_access_key_id = admin" | tee -a ~/.aws/credentials             
-          echo "aws_secret_access_key = rootPassword" | tee -a ~/.aws/credentials             
-
-      - name: sleep 90 seconds
-        run: sleep 90
+      - name: sleep 45 seconds
+        run: sleep 45
 
       - name: run test
         run: python test.py
