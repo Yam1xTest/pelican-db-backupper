@@ -63,4 +63,4 @@ jobs:
       - name: echo bucket
         run: |
           sudo cat /root/.aws/credentials
-          aws --endpoint-url http://minio-s3.localhost:40110 s3 ls s3://pelican-backups
+          sudo aws --endpoint-url http://minio-s3.localhost:40110 s3 ls s3://pelican-backups
