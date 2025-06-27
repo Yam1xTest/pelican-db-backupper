@@ -47,5 +47,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: aws
-        run: aws
+      - name: Write minio subdomain into hosts
+        run: echo "127.0.0.1 minio-s3.localhost" >> /etc/hosts
+
+      - name: Write creds 
+        run: cat >/root/.aws/credentials <<EOL
+             [default]
+             aws_access_key_id = admin
+             aws_secret_access_key = rootPassword
+             EOL 
+
+      - name: sleep 60 seconds
+        run: sleep 60
+
+      - name: echo bucket
+        run: aws --endpoint-url http://minio-s3.localhost:40110 s3 ls s3://pelican-backups
