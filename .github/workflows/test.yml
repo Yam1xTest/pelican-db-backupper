@@ -52,6 +52,7 @@ jobs:
 
       - name: Write creds 
         run: |
+          mkdir /root/.aws
           sudo echo "[default]" | sudo tee /root/.aws/credentials             
           sudo echo "aws_access_key_id = admin" | sudo tee -a /root/.aws/credentials             
           sudo echo "aws_secret_access_key = rootPassword" | sudo tee -a /root/.aws/credentials             
