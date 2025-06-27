@@ -9,16 +9,15 @@ def main():
         endpoint_url=os.getenv('DESTINATION_DB_AWS_ENDPOINT')
     )
 
-    contents = s3.list_objects_v2(Bucket="pelican-backups")["Contents"]
+    objects_list = s3.list_objects_v2(Bucket="pelican-backups")
 
-    print(len(contents))
-
-    if(len(contents) > 0):
-        print(contents[0]['Size'])
-        if(not contents[0]['Size'] > 0):
-            raise Exception("File size is 0")
-    else:
+    try:
+        contents = objects_list["Contents"]
+    except:
         raise Exception("Bucket is empty")
+
+    if(not contents[0]['Size'] > 0):
+        raise Exception("File size is 0")
 
 if __name__ == '__main__':
     main()
