@@ -30,7 +30,7 @@ jobs:
           runCmd: |
             # we need to override "latest" image tag of ui inside local-env to run e2e against the current commit ui version and not against latest from master
             sed -i "0,/tag:.*/s//tag: \"sha-${{ github.sha }}\"/" deploy/values-pelican-db-backupper.yaml.gotmpl
-            sed -i "0,/BACKUPS_SCHEDULE:.*/s//BACKUPS_SCHEDULE: \"*/1 * * * *\"/" deploy/values-pelican-db-backupper.yaml.gotmpl
+            sed -i "0,/BACKUPS_SCHEDULE:.*/s//BACKUPS_SCHEDULE: \"*\/1 * * * *\"/" deploy/values-pelican-db-backupper.yaml.gotmpl
             kind create cluster --name pelican --config kind-local-config.yaml --kubeconfig ./.pelican-cluster-kubeconfig
             
             export KUBECONFIG=$(pwd)/.pelican-cluster-kubeconfig
@@ -58,7 +58,7 @@ jobs:
           echo "aws_secret_access_key = rootPassword" | tee -a ~/.aws/credentials             
 
       - name: sleep 90 seconds
-        run: sleep 90
+        run: sleep 60
 
       - name: echo bucket
         run: |
