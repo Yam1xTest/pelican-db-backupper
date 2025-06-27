@@ -13,9 +13,11 @@ def main():
 
     print(len(contents))
 
-    if(len(contents) == 1):
-        if(contents[0]['Size'] > 0):
-            exit(1)
-            
+    if(len(contents) > 0):
+        if(not contents[0]['Size'] > 0):
+            raise Exception("File size is 0")
+    else:
+        raise Exception("Bucket is empty")
+
 if __name__ == '__main__':
     main()
