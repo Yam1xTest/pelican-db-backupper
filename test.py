@@ -10,7 +10,7 @@ def main():
     )
 
     objects_list = s3.list_objects_v2(Bucket="pelican-backups")
-
+    print(objects_list)
     try:
         contents = objects_list["Contents"]
     except:
