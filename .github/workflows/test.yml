@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v4 
 
       - name: sleep 45 seconds
-        run: sleep 45
+        run: sleep 360
 
       - name: run test
         run: python test.py
