@@ -22,14 +22,14 @@ jobs:
       - name: Checkout local-env
         uses: actions/checkout@v4
         with:
-          repository: Yam1xTest/pelican-local-env
+          repository: TourmalineCore/pelican-local-env
 
       - name: Deploy Local Env to Kind k8s
         uses: devcontainers/ci@v0.3
         with:
           runCmd: |
             # we need to override "latest" image tag of ui inside local-env to run e2e against the current commit ui version and not against latest from master
-            sed -i "0,/tag:.*/s//tag: \"sha-${{ github.sha }}\"/" deploy/values-pelican-db-backupper.yaml.gotmpl
+            # sed -i "0,/tag:.*/s//tag: \"sha-${{ github.sha }}\"/" deploy/values-pelican-db-backupper.yaml.gotmpl
             sed -i "0,/BACKUPS_SCHEDULE:.*/s//BACKUPS_SCHEDULE: \"*\/1 * * * *\"/" deploy/values-pelican-db-backupper.yaml.gotmpl
             kind create cluster --name pelican --config kind-local-config.yaml --kubeconfig ./.pelican-cluster-kubeconfig
             
